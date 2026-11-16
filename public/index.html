@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книга рецептов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>🍳 Менеджер рецептов</h1>
+        <div id="stats-panel" class="stats-panel"></div>
+    </header>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <section class="filter-section">
+                <h2>Фильтрация</h2>
+                <label for="filter-difficulty">Сложность:</label>
+                <select id="filter-difficulty">
+                    <option value="">Все</option>
+                    <option value="Легко">Легко</option>
+                    <option value="Средно">Средно</option>
+                    <option value="Сложно">Сложно</option>
+                </select>
+
+                <label for="filter-time">Макс. время (мин): <span id="time-val">120</span></label>
+                <input type="range" id="filter-time" min="10" max="120" value="120">
+            </section>
+
+            <section class="form-section">
+                <h2 id="form-title">Добавить рецепт</h2>
+                <form id="recipe-form">
+                    <input type="hidden" id="recipe-id">
+                    <div class="form-group">
+                        <label for="recipe-name">Название:</label>
+                        <input type="text" id="recipe-name" required placeholder="Например: Пюре">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-difficulty">Сложность:</label>
+                        <select id="recipe-difficulty" required>
+                            <option value="Легко">Легко</option>
+                            <option value="Средно">Средно</option>
+                            <option value="Сложно">Сложно</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-cooking-time">Время (мин):</label>
+                        <input type="number" id="recipe-cooking-time" min="1" required placeholder="30">
+                    </div>
+                    <button type="submit" class="btn btn-success" id="submit-btn">Создать рецепт</button>
+                    <button type="button" class="btn btn-secondary hidden" id="cancel-btn">Отмена</button>
+                </form>
+            </section>
+        </aside>
+
+        <!-- Главный контент с карточками -->
+        <main class="content">
+            <div id="recipes-list" class="recipes-grid"></div>
+        </main>
+    </div>
+
+    <!-- Модальное окно добавления ингредиента -->
+    <div id="ingredient-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Добавить ингредиент</h3>
+            <form id="ingredient-form">
+                <input type="hidden" id="modal-recipe-id">
+                <div class="form-group">
+                    <label for="ing-name">Название:</label>
+                    <input type="text" id="ing-name" required placeholder="Сахар">
+                </div>
+                <div class="form-group">
+                    <label for="ing-qty">Количество:</label>
+                    <input type="number" step="0.1" id="ing-qty" required placeholder="2">
+                </div>
+                <div class="form-group">
+                    <label for="ing-unit">Ед. изм.:</label>
+                    <input type="text" id="ing-unit" required placeholder="ч.л.">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-success">Добавить</button>
+                    <button type="button" class="btn btn-secondary" id="close-modal-btn">Закрыть</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
